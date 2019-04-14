@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 
@@ -15,6 +16,7 @@ use yii\web\IdentityInterface;
  * @property string $access_token [varchar(255)]
  * @property string|mixed $authKey
  * @property null|string $accessToken
+ * @property UsersRequest[] $usersRequest
  * @property int $created_at [timestamp]
  */
 class Users extends ActiveRecord implements IdentityInterface
@@ -37,7 +39,8 @@ class Users extends ActiveRecord implements IdentityInterface
         return [
             [['username', 'password'], 'required'],
             [['id'], 'integer'],
-            [['username', 'password', 'auth_key', 'access_token', 'created_at'], 'string']
+            [['username', 'password', 'auth_key', 'access_token', 'created_at'], 'string'],
+            [['usersRequest'], 'safe']
         ];
     }
 
@@ -55,6 +58,7 @@ class Users extends ActiveRecord implements IdentityInterface
             'access_token' => 'Ключ доступа',
             'auth_key' => 'Ключ авторизации',
             'created_at' => 'Дата создания',
+            'usersRequest' => 'Запросы пользователей'
         ];
     }
 
@@ -133,5 +137,13 @@ class Users extends ActiveRecord implements IdentityInterface
     public function validateAccessToken(string $token): bool
     {
         return $this->getAuthKey() === $token;
+    }
+
+    /**
+     * @return ActiveQuery
+     */
+    public function getUsersRequest (): ActiveQuery
+    {
+        return $this->hasMany(UsersRequest::class, ['user_id' => 'id']);
     }
 }
