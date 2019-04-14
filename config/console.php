@@ -2,6 +2,7 @@
 
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
+$auth = require __DIR__ . '/auth.php';
 
 $config = [
     'id' => 'basic-console',
@@ -14,6 +15,7 @@ $config = [
         '@tests' => '@app/tests',
     ],
     'components' => [
+        'authManager' => $auth,
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],

@@ -1,7 +1,10 @@
 <?php
 
+use app\models\Users;
+
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
+$auth = require __DIR__. '/auth.php';
 
 $config = [
     'id' => 'basic',
@@ -20,8 +23,8 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
-            'enableAutoLogin' => true,
+            'identityClass' => Users::class,
+            'enableAutoLogin' => false,
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -51,6 +54,7 @@ $config = [
             ],
         ],
         */
+        'authManager' => $auth,
     ],
     'params' => $params,
 ];
