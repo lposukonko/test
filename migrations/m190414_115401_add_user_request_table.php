@@ -16,7 +16,7 @@ class m190414_115401_add_user_request_table extends Migration
             'id' => $this->primaryKey(),
             'user_id' => $this->integer()->notNull(),
             'request' => $this->string(),
-            'response' => $this->string(),
+            'response' => $this->integer(),
             'created_at' => 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP'
         ]);
 

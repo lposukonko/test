@@ -3,6 +3,8 @@
 namespace app\helpers;
 
 /**
+ * Helper class for array sorting
+ *
  * Class ArraySortHelper
  * @package app\helpers
  */
@@ -10,6 +12,8 @@ class ArraySortHelper
 {
 
     /**
+     * Sorting array
+     *
      * @param $number
      * @param $array
      * @return int

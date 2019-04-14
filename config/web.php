@@ -1,6 +1,7 @@
 <?php
 
 use app\models\Users;
+use yii\rest\UrlRule;
 
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
@@ -25,6 +26,7 @@ $config = [
         'user' => [
             'identityClass' => Users::class,
             'enableAutoLogin' => false,
+            'enableSession' => false,
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -46,14 +48,12 @@ $config = [
             ],
         ],
         'db' => $db,
-        /*
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
             ],
         ],
-        */
         'authManager' => $auth,
     ],
     'params' => $params,

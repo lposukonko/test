@@ -36,8 +36,8 @@ class UsersRequest extends ActiveRecord
     {
         return [
             [['user_id', 'request', 'response'], 'required'],
-            [['user_id', 'id'], 'integer'],
-            [['response', 'request'], 'string']
+            [['user_id', 'id', 'response'], 'integer'],
+            [['request'], 'string']
         ];
     }
 
